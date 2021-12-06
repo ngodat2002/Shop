@@ -1,0 +1,54 @@
+﻿@model WAP_T2010A.Models.Product
+@{
+    ViewBag.Title = "Update Product";
+}
+
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Update Product</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()//CHo 1 token vaof form
+                @Html.ValidationSummary(true)//Xac dinh se validate form data
+                <div class="card-body">
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.ProductName)
+                        @Html.EditorFor(Model => Model.ProductName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter product name" } })
+                        @Html.ValidationMessageFor(Model => Model.ProductName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.Description)
+                        @Html.EditorFor(Model => Model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter description" } })
+                        @Html.ValidationMessageFor(Model => Model.Description, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.Price)
+                        @Html.EditorFor(Model => Model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter price" } })
+                        @Html.ValidationMessageFor(Model => Model.Price, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => Model.Image)
+                        @Html.EditorFor(Model => Model.Image, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter image" } })
+                        @Html.ValidationMessageFor(Model => Model.Image, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div> <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+

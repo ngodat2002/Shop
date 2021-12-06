@@ -1,0 +1,59 @@
+﻿@model List<WAP_T2010A.Models.Product>
+@{
+    ViewBag.Title = "Product";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Products</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model)
+                        {
+                        <tr>
+                            <td>@product.Id</td>
+                            <td>@product.ProductName</td>
+                            <td>@product.Description</td>
+                            <td>@product.Price</td>
+                            <td>@product.Image</td>
+                            <td>
+                                <a href="~/Product/Update/@product.Id">Update</a>
+                                <a onclick="return confirm('Are you sure')" href="~/Product/Delete/@product.Id" class="text-danger">Delete</a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
