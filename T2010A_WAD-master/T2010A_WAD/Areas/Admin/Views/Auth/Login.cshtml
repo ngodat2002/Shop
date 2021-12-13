@@ -1,0 +1,56 @@
+﻿
+@model T2010A_WAD.Areas.Admin.Models.Admin
+
+@{ViewBag.Title = "Login";}
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card ">
+            <div class="card-header">
+                <h3 class="card-title">Login</h3>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+@Html.AntiForgeryToken()
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="my-2 d-flex justify-content-between align-items-center">
+                <div class="form-check">
+                    <label class="form-check-label text-muted">
+                        <input type="checkbox" class="form-check-input"> Keep me signed in
+                    </label>
+                </div>
+                <a href="#" class="auth-link text-black">Forgot password?</a>
+            </div>
+            <div class="text-center mt-4 font-weight-light">
+                Don't have an account? <a href="~/Admin/Auth/Register" class="text-primary">Create</a>
+            </div>
+            <div class="center-form" style="text-align:center;margin-top:10px;">
+                <button type="submit" class="btn btn-gradient-primary mr-5">Login</button>
+            </div>
+        </div>}
+
+
+        </div>
+    </div>
+</div>
+
+
