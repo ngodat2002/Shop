@@ -18,7 +18,7 @@ namespace T2010A_WAD.Controllers
             // var category = new Category() {Id=1,CategoryNam e="Fashion" };
             // ViewBag.Category = category;
             var list = context.Categories.ToList();
-       
+
             return View(list); // passing data by model
         }
 
@@ -44,13 +44,13 @@ namespace T2010A_WAD.Controllers
 
         public ActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             // Dựa vào id để tìm category
             Category category = context.Categories.Find(id);
-            if(category == null)
+            if (category == null)
             {
                 return HttpNotFound();
             }

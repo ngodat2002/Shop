@@ -46,26 +46,28 @@ namespace T2010A_WAD
                 ));
             //Add css user Shoprun
             bundles.Add(new StyleBundle("~/ShopRunner/css").Include(
-                "~/Content/user/css/style.css",
+              
                 "~/Content/user/css/bootstrap.min.css",
                 "~/Content/user/css/font-awesome.min.css",
                 "~/Content/user/css/elegant-icons.css",
                 "~/Content/user/css/nice-select.css",
                 "~/Content/user/css/jquery-ui.min.css",
                 "~/Content/user/css/owl.carousel.min.css",
-                "~/Content/user/css/slicknav.min.css"
+                "~/Content/user/css/slicknav.min.css",
+                "~/Content/user/css/style.css"
 
                 ));
+
             //Add js user
-            bundles.Add(new ScriptBundle("~/ShopRunner/js").Include(
-                "~/Content/user/js/main.js",
+            bundles.Add(new ScriptBundle("~/ShopRunner/js").Include(               
                 "~/Content/user/js/jquery-3.3.1.min.js",
                 "~/Content/user/js/bootstrap.min.js",
                 "~/Content/user/js/jquery.nice-select.min.js",
                 "~/Content/user/js/jquery-ui.min.js",
                 "~/Content/user/js/jquery.slicknav.js",
                 "~/Content/user/js/mixitup.min.js",
-                "~/Content/user/js/owl.carousel.min.js"
+                "~/Content/user/js/owl.carousel.min.js",
+                "~/Content/user/js/main.js"
                 ));
         }
     }

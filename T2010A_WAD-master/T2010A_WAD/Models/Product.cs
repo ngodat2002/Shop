@@ -16,10 +16,9 @@ namespace T2010A_WAD.Models
         [Required(ErrorMessage = "Vui long nhap gia san pham")]
         public int Price { get; set; }
         [Required(ErrorMessage = "Vui long nhap anh san pham")]
-        public string Image { get; set; }
-        //public int CategoryID { get; set; }
-        //public int BrandID { get; set; }
-        //public virtual Category Category { get; set; }
-        //public virtual Brand Brand { get; set; }
+        public int CategoryID { get; set; }
+        public int BrandID { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual Brand Brand { get; set; }
     }
 }

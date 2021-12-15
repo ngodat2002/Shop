@@ -132,6 +132,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Models\Admin.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
@@ -259,7 +260,8 @@
     <Content Include="Content\user\img\latest-product\lp-1.jpg" />
     <Content Include="Content\user\img\latest-product\lp-2.jpg" />
     <Content Include="Content\user\img\latest-product\lp-3.jpg" />
-    <Content Include="Content\user\img\logo.png" />
+    <Content Include="Content\user\img\logo3.png" />
+    <Content Include="Content\user\img\logo2.png" />
     <Content Include="Content\user\img\payment-item.png" />
     <Content Include="Content\user\img\product\details\product-details-1.jpg" />
     <Content Include="Content\user\img\product\details\product-details-2.jpg" />
@@ -456,6 +458,7 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Update.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

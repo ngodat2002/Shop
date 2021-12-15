@@ -12,15 +12,17 @@ namespace T2010A_WAD.Areas.Admin.Controllers
 {
     public class ProductsController : Controller
     {
-        private DataContext db = new DataContext();
+ private DataContext db = new DataContext();
 
-        // GET: Admin/Products
+        // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var products = db.Products.Include(p => p.Category);
+            products = db.Products.Include(p => p.Brand);
+            return View(products.ToList());
         }
 
-        // GET: Admin/Products/Details/5
+        // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,18 +37,20 @@ namespace T2010A_WAD.Areas.Admin.Controllers
             return View(product);
         }
 
-        // GET: Admin/Products/Create
+        // GET: Products/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryID = new SelectList(db.Categories, "Id", "CategoryName");
+            ViewBag.BrandID = new SelectList(db.Brands, "Id", "BrandName");
             return View();
         }
 
-        // POST: Admin/Products/Create
+        // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProductName,Description,Price,Image")] Product product)
+        public ActionResult Create([Bind(Include = "Id,ProductName,Description,Price,CategoryID,BrandID")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -55,10 +59,12 @@ namespace T2010A_WAD.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryID = new SelectList(db.Categories, "Id", "CategoryName", product.CategoryID);
+            ViewBag.BrandID = new SelectList(db.Brands, "Id", "BrandName", product.BrandID);
             return View(product);
         }
 
-        // GET: Admin/Products/Edit/5
+        // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -70,15 +76,17 @@ namespace T2010A_WAD.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryID = new SelectList(db.Categories, "Id", "CategoryName", product.CategoryID);
+            ViewBag.BrandID = new SelectList(db.Brands, "Id", "BrandName", product.BrandID);
             return View(product);
         }
 
-        // POST: Admin/Products/Edit/5
+        // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProductName,Description,Price,Image")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,ProductName,Description,Price,CategoryID,BrandID")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -86,10 +94,12 @@ namespace T2010A_WAD.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryID = new SelectList(db.Categories, "Id", "CategoryName", product.CategoryID);
+            ViewBag.BrandID = new SelectList(db.Brands, "Id", "BrandName", product.BrandID);
             return View(product);
         }
 
-        // GET: Admin/Products/Delete/5
+        // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +114,7 @@ namespace T2010A_WAD.Areas.Admin.Controllers
             return View(product);
         }
 
-        // POST: Admin/Products/Delete/5
+        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
