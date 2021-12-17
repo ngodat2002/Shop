@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using T2010A_WAD.Models;
+using System.IO;
 
 namespace T2010A_WAD.Areas.Admin.Controllers
 {
@@ -48,10 +49,26 @@ namespace T2010A_WAD.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CategoryName,CategoryImage")] Category category)
+        public ActionResult Create([Bind(Include = "Id,CategoryName,CategoryImage")] Category category,HttpPostedFileBase CategoryImage)
         {
             if (ModelState.IsValid)
             {
+                string catImg = "~/Upload/default.png";
+                try {
+                    if (CategoryImage != null)
+                    {
+                        string fileName = Path.GetFileName(CategoryImage.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+                        CategoryImage.SaveAs(path);
+                        catImg = "~/Uploads/" + fileName;
+                    }
+                }
+                catch(Exception e) {
+                }
+                finally
+                {
+                    category.CategoryImage = catImg;
+                }
                 db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");

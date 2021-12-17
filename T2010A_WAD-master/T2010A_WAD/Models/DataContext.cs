@@ -10,6 +10,7 @@ namespace T2010A_WAD.Models
     {
         public DataContext(): base("T2010A") { }
 
+        
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }

@@ -135,9 +135,9 @@
     <Compile Include="Controllers\AuthUserController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -145,6 +145,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Order.cs" />
@@ -230,6 +231,8 @@
     <Content Include="Content\user\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\user\img\banner\banner-1.jpg" />
     <Content Include="Content\user\img\banner\banner-2.jpg" />
+    <Content Include="Content\user\img\banner\bannersprot.jpg" />
+    <Content Include="Content\user\img\blog\blog.jpg" />
     <Content Include="Content\user\img\blog\blog-1.jpg" />
     <Content Include="Content\user\img\blog\blog-2.jpg" />
     <Content Include="Content\user\img\blog\blog-3.jpg" />
@@ -246,11 +249,17 @@
     <Content Include="Content\user\img\cart\cart-1.jpg" />
     <Content Include="Content\user\img\cart\cart-2.jpg" />
     <Content Include="Content\user\img\cart\cart-3.jpg" />
+    <Content Include="Content\user\img\categories\baners2.jpg" />
     <Content Include="Content\user\img\categories\cat-1.jpg" />
     <Content Include="Content\user\img\categories\cat-2.jpg" />
     <Content Include="Content\user\img\categories\cat-3.jpg" />
     <Content Include="Content\user\img\categories\cat-4.jpg" />
     <Content Include="Content\user\img\categories\cat-5.jpg" />
+    <Content Include="Content\user\img\featured\aothethao1.jpg" />
+    <Content Include="Content\user\img\featured\aothethao2.jpg" />
+    <Content Include="Content\user\img\featured\aothethao3.jpg" />
+    <Content Include="Content\user\img\featured\aothethao4.jpg" />
+    <Content Include="Content\user\img\featured\aothethao5.jpg" />
     <Content Include="Content\user\img\featured\feature-1.jpg" />
     <Content Include="Content\user\img\featured\feature-2.jpg" />
     <Content Include="Content\user\img\featured\feature-3.jpg" />
@@ -259,7 +268,13 @@
     <Content Include="Content\user\img\featured\feature-6.jpg" />
     <Content Include="Content\user\img\featured\feature-7.jpg" />
     <Content Include="Content\user\img\featured\feature-8.jpg" />
+    <Content Include="Content\user\img\featured\giayultra.jpg" />
+    <Content Include="Content\user\img\featured\tatthethao1.jpg" />
+    <Content Include="Content\user\img\featured\tatthethao2.jpg" />
+    <Content Include="Content\user\img\featured\tatthethao3.jpg" />
+    <Content Include="Content\user\img\featured\tatthethao4.jpg" />
     <Content Include="Content\user\img\hero\ban.png" />
+    <Content Include="Content\user\img\hero\baners.jpg" />
     <Content Include="Content\user\img\hero\banner.jpg" />
     <Content Include="Content\user\img\language.png" />
     <Content Include="Content\user\img\latest-product\lp-1.jpg" />
@@ -449,7 +464,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Demo\SayHello.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
@@ -468,10 +482,12 @@
     <Content Include="Views\AuthUser\Login.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
