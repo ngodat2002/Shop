@@ -121,6 +121,12 @@
                                         <label>Manufacturer</label>
                                         <input type="text" class="form-control" name="manufacturer" placeholder="Enter manufacturer" required>
                                     </div>
+                                    <div class="form-group">
+                                        <select name="status" class="select-form-lg">
+                                            <option value="1">Active</option>
+                                            <option value="0">DeActive</option>
+                                        </select>
+                                    </div>
 
                                     <button name="btn-submit" type="submit" class="btn btn-primary me-2">Submit</button>
 
@@ -179,7 +185,7 @@
         var txtPrice = document.forms['register-form']['price'];
         var txtImage = document.forms['register-form']['image'];
         var txtManufacturer = document.forms['register-form']['manufacturer'];
-        // var txtStatus = document.forms['register-form']['status'];
+        var txtStatus = document.forms['register-form']['status'];
         if (btnSubmit) {
             btnSubmit.onclick = function(event) {
                 event.preventDefault();
@@ -191,7 +197,7 @@
                 const price = txtPrice.value;
                 const image = txtImage.value;
                 const manufacturer = txtManufacturer.value;
-                // var status = txtStatus.value;
+                var status = txtStatus.value;
                 const obj = {
                     'productId': productId,
                     'name': name,
@@ -201,7 +207,7 @@
                     'price': price,
                     'image': image,
                     'manufacturer': manufacturer,
-                    // 'status': status
+                    'status': status
                 };
                 console.log(obj)
                 var dataToSend = JSON.stringify(obj);

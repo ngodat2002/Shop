@@ -20,6 +20,75 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function (){
+            loadData();
+            handleDeleteClick();
+            getParametterUrl();
+        })
+        function getParametterUrl(parameterName){
+            var url_string = window.location.href
+            var url = new URL(url_string);
+            return url.searchParams.get(parameterName);
+        }
+        function handleDeleteClick() {
+            var listBtnDelete = document.querySelectorAll('.btn-delete');
+            for (let i = 0; i < listBtnDelete.length; i++) {
+                const element = listBtnDelete[i];
+                element.onClick = function(e) {
+                    e.preventDefault();
+                    if(confirm('Are you sure?')){
+                        var id = this.getAttribute('data-id');
+                        handleDeleteById(id);
+                    }
+                }
+            }
+            console.log("SUCCESS DELETE")
+        }
+        function handleDeleteById(id){
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.onreadystatechange = function () {
+                if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+                    alert('Action success');
+                    window.location.reload();
+                }
+            }
+            xmlHttpRequest.open('DELETE',`https://product-clothes-sprot.herokuapp.com/api/v1/products/${id}`, false);
+            console.log(xmlHttpRequest);
+            xmlHttpRequest.send();
+        }
+        function loadData(){
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.onreadystatechange = function(){
+                if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+
+                    var contentText = '';
+                    var jsonResult = JSON.parse(xmlHttpRequest.responseText);
+                    for (let i = 0; i < jsonResult.length; i++) {
+                        const element = jsonResult[i];
+                        contentText += `<tr>
+                           <td>${element.productId}</td>
+                           <td>${element.name}</td>
+                           <td>$ ${element.price}</td>
+                           <td><img src="${element.image}" class="img-fluid" style="border-radius: 0;width: 200px;height: 150px" alt="anh dep"/></td>
+                           <td>${element.description}</td>
+                           <td>
+                           <a href="/template/detail.html/?id=${element.productId}"><i class="mdi mdi-account-search" style="font-size: 20px;"></i></a>
+                           <a href="/template/edit.html/?id=${element.productId}"><i class="mdi mdi-lead-pencil" style="font-size: 20px;"></i></a>
+                           <a class="btn-delete" href="" data-id="${element.productId}"><i class="mdi mdi-delete" style="font-size: 20px;"></i></a>
+                  </td>
+</tr>`
+                    }
+                    var listProduct = document.getElementById('main-content');
+                    if(listProduct !== undefined){
+                        listProduct.innerHTML = contentText;
+                    }
+                }
+            }
+            xmlHttpRequest.open('GET','https://product-clothes-sprot.herokuapp.com/api/v1/products', false);
+            xmlHttpRequest.send();
+        }
+    </script>
 </head>
 <body>
 <div class="container-scroller">
@@ -147,67 +216,73 @@
 <!-- Custom js for this page -->
 <script src="assets/js/dashboard.js"></script>
 <!-- End custom js for this page -->
-<script>
-    document.addEventListener('DOMContentLoaded', function (){
-        loadData();
-        handleDeleteClick();
-    })
-    function handleDeleteClick() {
-        var listBtnDelete = document.querySelectorAll('.btn-delete');
-        for (let i = 0; i < listBtnDelete.length; i++) {
-            const element = listBtnDelete[i];
-            element.onClick = function(e) {
-                e.preventDefault();
-                if(confirm('Are you sure?')){
-                    var id = this.getAttribute('data-id');
-                    handleDeleteById(id);
-                }
-            }
-        }
-    }
-    function handleDeleteById(id){
-        var xmlHttpRequest = new XMLHttpRequest();
-        xmlHttpRequest.onreadystatechange = function () {
-            if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
-                alert('Action success');
-                window.location.reload();
-            }
-        }
-        xmlHttpRequest.open('DELETE',`https://product-clothes-sprot.herokuapp.com/api/v1/products/${id}`, false);
-        xmlHttpRequest.send();
-    }
-    function loadData(){
-            var xmlHttpRequest = new XMLHttpRequest();
-            xmlHttpRequest.onreadystatechange = function(){
-                if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function (){-->
+<!--        loadData();-->
+<!--        handleDeleteClick();-->
+<!--        getParametterUrl();-->
+<!--    })-->
+<!--    function getParametterUrl(parameterName){-->
+<!--        var url_string = window.location.href-->
+<!--        var url = new URL(url_string);-->
+<!--        return url.searchParams.get(parameterName);-->
+<!--    }-->
+<!--    function handleDeleteClick() {-->
+<!--        var listBtnDelete = document.querySelectorAll('.btn-delete');-->
+<!--        for (let i = 0; i < listBtnDelete.length; i++) {-->
+<!--            const element = listBtnDelete[i];-->
+<!--            element.onClick = function(e) {-->
+<!--                e.preventDefault();-->
+<!--                if(confirm('Are you sure?')){-->
+<!--                    var id = this.getAttribute('data-id');-->
+<!--                    handleDeleteById(id);-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--    function handleDeleteById(id){-->
+<!--        var xmlHttpRequest = new XMLHttpRequest();-->
+<!--        xmlHttpRequest.onreadystatechange = function () {-->
+<!--            if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){-->
+<!--                alert('Action success');-->
+<!--                window.location.reload();-->
+<!--            }-->
+<!--        }-->
+<!--        xmlHttpRequest.open('DELETE',`https://product-clothes-sprot.herokuapp.com/api/v1/products/${id}`, false);-->
+<!--        xmlHttpRequest.send();-->
+<!--    }-->
+<!--    function loadData(){-->
+<!--        var xmlHttpRequest = new XMLHttpRequest();-->
+<!--        xmlHttpRequest.onreadystatechange = function(){-->
+<!--            if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){-->
 
-                    var contentText = '';
-                    var jsonResult = JSON.parse(xmlHttpRequest.responseText);
-                    for (let i = 0; i < jsonResult.length; i++) {
-                        const element = jsonResult[i];
-                        contentText += `<tr>
-                           <td>${element.productId}</td>
-                           <td>${element.name}</td>
-                           <td>$ ${element.price}</td>
-                           <td><img src="${element.image}" class="img-fluid" style="border-radius: 0;width: 200px;height: 150px" alt="anh dep"/></td>
-                           <td>${element.description}</td>
-                           <td>
-                           <a href="/template/detail.html/?id=${element.productId}"><i class="mdi mdi-account-search" style="font-size: 20px;"></i></a>
-                           <a href="/template/edit.html/?id=${element.productId}"><i class="mdi mdi-lead-pencil" style="font-size: 20px;"></i></a>
-                           <a class="btn-delete" href="delete.html" data-id="${element.productId}"><i class="mdi mdi-delete btn-delete" style="font-size: 20px;"></i></a>
-                  </td>
-</tr>`
-                    }
-                    var listProduct = document.getElementById('main-content');
-                    if(listProduct !== undefined){
-                        listProduct.innerHTML = contentText;
-                    }
-                }
-            }
-            xmlHttpRequest.open('GET','https://product-clothes-sprot.herokuapp.com/api/v1/products', false);
-            xmlHttpRequest.send();
+<!--                var contentText = '';-->
+<!--                var jsonResult = JSON.parse(xmlHttpRequest.responseText);-->
+<!--                for (let i = 0; i < jsonResult.length; i++) {-->
+<!--                    const element = jsonResult[i];-->
+<!--                    contentText += `<tr>-->
+<!--                           <td>${element.productId}</td>-->
+<!--                           <td>${element.name}</td>-->
+<!--                           <td>$ ${element.price}</td>-->
+<!--                           <td><img src="${element.image}" class="img-fluid" style="border-radius: 0;width: 200px;height: 150px" alt="anh dep"/></td>-->
+<!--                           <td>${element.description}</td>-->
+<!--                           <td>-->
+<!--                           <a href="/template/detail.html/?id=${element.productId}"><i class="mdi mdi-account-search" style="font-size: 20px;"></i></a>-->
+<!--                           <a href="/template/edit.html/?id=${element.productId}"><i class="mdi mdi-lead-pencil" style="font-size: 20px;"></i></a>-->
+<!--                           <a class="btn-delete" href="delete.html/id=?${element.productId}" data-id="${element.productId}"><i class="mdi mdi-delete btn-delete" style="font-size: 20px;"></i></a>-->
+<!--                  </td>-->
+<!--</tr>`-->
+<!--                }-->
+<!--                var listProduct = document.getElementById('main-content');-->
+<!--                if(listProduct !== undefined){-->
+<!--                    listProduct.innerHTML = contentText;-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--        xmlHttpRequest.open('GET','https://product-clothes-sprot.herokuapp.com/api/v1/products', false);-->
+<!--        xmlHttpRequest.send();-->
 
-    }
-</script>
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

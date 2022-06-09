@@ -26,8 +26,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo" href="index.html"><img src="/template/assets/images/logo.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/template/assets/images/logo-mini.svg" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -91,7 +91,7 @@
                                 <form class="forms-sample" name="register-form">
                                     <div class="form-group">
                                         <label>ProductCode</label>
-                                        <input type="text" class="form-control" name="productId" placeholder="Enter Product Code" required>
+                                        <input disabled type="text" class="form-control" name="productId" placeholder="Enter Product Code" required>
                                     </div>
                                     <div class="form-group">
                                         <label >ProductName</label>
@@ -120,6 +120,12 @@
                                     <div class="form-group">
                                         <label>Manufacturer</label>
                                         <input type="text" class="form-control" name="manufacturer" placeholder="Enter manufacturer" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="status" class="select-form-lg">
+                                            <option value="1">Active</option>
+                                            <option value="0">DeActive</option>
+                                        </select>
                                     </div>
 
                                     <button name="btn-submit" type="submit" class="btn btn-primary me-2">Submit</button>
@@ -185,7 +191,7 @@
         var txtPrice = document.forms['register-form']['price'];
         var txtImage = document.forms['register-form']['image'];
         var txtManufacturer = document.forms['register-form']['manufacturer'];
-        // var txtStatus = document.forms['register-form']['status'];
+        var txtStatus = document.forms['register-form']['status'];
 
         var id = getParametterUrl('id');
         var xmlHttpRequest = new XMLHttpRequest();
@@ -201,6 +207,7 @@
                 txtPrice.value = element.price;
                 txtImage.value = element.image;
                 txtManufacturer.value = element.manufacturer;
+                txtStatus.value =element.status;
             }
         }
         xmlHttpRequest.open('GET',`https://product-clothes-sprot.herokuapp.com/api/v1/products/${id}`, false);
@@ -217,7 +224,7 @@
                 const price = txtPrice.value;
                 const image = txtImage.value;
                 const manufacturer = txtManufacturer.value;
-                // var status = txtStatus.value;
+                var status = txtStatus.value;
                 const obj = {
                     'productId': productId,
                     'name': name,
@@ -227,7 +234,7 @@
                     'price': price,
                     'image': image,
                     'manufacturer': manufacturer,
-                    // 'status': status
+                    'status': status
                 };
                 console.log(obj)
                 var dataToSend = JSON.stringify(obj);
